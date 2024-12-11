@@ -7,7 +7,7 @@ const registrarUsuario = async (req, res) => {
     const { nombre, email, password } = req.body;
 
     // Verificar si el usuario ya existe
-    const usuarioExistente = await Usuario.findOne({ email });
+    const usuarioExistente = await Usuario.findOne({ where: { email } });
     if (usuarioExistente) {
       return res.status(400).json({ error: 'El usuario ya existe' });
     }
@@ -27,7 +27,7 @@ const loginUsuario = async (req, res) => {
     const { email, password } = req.body;
 
     // Buscar el usuario por email
-    const usuario = await Usuario.findOne({ email });
+    const usuario = await Usuario.findOne({ where: { email } });
     if (!usuario) {
       return res.status(401).json({ error: 'Credenciales incorrectas' });
     }

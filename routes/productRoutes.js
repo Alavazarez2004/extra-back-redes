@@ -3,9 +3,9 @@ const { crearProducto, obtenerProductos, eliminarProducto, modificarProducto } =
 const router = express.Router();
 
 // Rutas para productos
-router.post('/api/products', crearProducto);
-router.get('/api/products', obtenerProductos);
-router.delete('/api/products/:nombre', eliminarProducto);
-router.put('/api/products/:id', modificarProducto);
+router.post('/create', crearProducto);
+router.get('/get', obtenerProductos);
+router.delete('/delete/:nombre', eliminarProducto);
+router.put('/edit/:id', modificarProducto);
 
 module.exports = router;

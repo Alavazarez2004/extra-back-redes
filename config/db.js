@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
+const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect('mongodb://localhost:27017/mi-base-datos', {
-    });
-    console.log('Conexión a la base de datos exitosa');
-  } catch (err) {
-    console.error('Error al conectar a la base de datos:', err.message);
-    process.exit(1); // Detener el servidor si no se puede conectar a la base de datos
+const sequelize = new Sequelize(
+  process.env.DB_NAME, // Nombre de la base de datos
+  process.env.DB_USER, // Usuario de la base de datos
+  process.env.DB_PASS, // Contraseña de la base de datos
+  {
+    host: process.env.DB_HOST,   // Host de la base de datos
+    dialect: 'mysql',            // Especifica el dialecto, puede ser 'mysql', 'postgres', 'sqlite', etc.
+    logging: false,              // Deshabilitar el logging si no lo necesitas
   }
-};
+);
 
-module.exports = connectDB;
+module.exports = sequelize;

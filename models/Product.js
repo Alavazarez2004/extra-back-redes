@@ -1,19 +1,24 @@
-// models/producto.js
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db'); // Importar la configuración de conexión
 
-// Definir el esquema para el producto
-const productoSchema = new mongoose.Schema({
+// Definir el modelo Producto
+const Producto = sequelize.define('Producto', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   nombre: {
-    type: String,
-    required: true
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   precio: {
-    type: Number,
-    required: true
-  }
+    type: DataTypes.DECIMAL(10, 2), // Ajusta el tamaño y la precisión según sea necesario
+    allowNull: false,
+  },
+}, {
+  tableName: 'productos', // Nombre de la tabla en la base de datos
+  timestamps: false, // Si no quieres `createdAt` y `updatedAt`
 });
-
-// Crear el modelo usando el esquema
-const Producto = mongoose.model('Productos', productoSchema);
 
 module.exports = Producto;
