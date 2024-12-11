@@ -5,7 +5,7 @@ const usuarioRoutes = require('./routes/userRoutes');
 const corsMiddleware = require('./middleware/corsMiddleware');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 const cors = require('cors'); // Importar cors
 require('dotenv').config(); // Cargar las variables de entorno
