@@ -16,7 +16,7 @@ app.use(express.json()); // Usar express.json() para parsear JSON en las solicit
 
 // Configurar CORS
 app.use(cors({
-  origin: 'http://localhost:5173', // URL de tu frontend, ajusta según sea necesario
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Actualiza esto según el dominio de tu frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 }));
